@@ -1,13 +1,16 @@
+import 'express-async-errors'
 import * as dotenv from 'dotenv'
 dotenv.config()
 import express from 'express'
 const app = express()
-import mongoose from 'mongoose'
-
 import morgan from 'morgan'
+import mongoose from 'mongoose'
 
 // routes
 import jobRouter from './routes/jobRouter.js'
+
+// middleware
+import errorHandlerMiddleware from './middleware/errorHandlerMIddleware.js'
 
 if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'))
@@ -32,10 +35,7 @@ app.use('*', (req, res) => {
 })
 
 // Error Middleware
-app.use((err, req, res, next) => {
-  console.log(error)
-  res.status(500).json({ msg: 'something went wrong' })
-})
+app.use(errorHandlerMiddleware)
 
 const port = process.env.PORT || 5100
 
