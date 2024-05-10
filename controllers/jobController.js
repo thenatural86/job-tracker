@@ -26,7 +26,7 @@ export const createJob = async (req, res) => {
 // Get Single Job
 export const getSingleJob = async (req, res) => {
   const { id } = req.params
-  const job = jobs.find((job) => job.id === id)
+  const job = await Job.findById(id)
 
   if (!job) {
     return res.status(404).json({ msg: `no job with id ${id}` })
