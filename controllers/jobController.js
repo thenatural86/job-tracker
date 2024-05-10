@@ -55,5 +55,5 @@ export const deleteJob = async (req, res) => {
     return res.status(404).json({ msg: `no job with id ${id}` })
   }
 
-  res.status(200).json({ job: removedJob })
+  res.status(200).json({ msg: 'job deleted', job: removedJob })
 }
