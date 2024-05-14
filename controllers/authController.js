@@ -1,5 +1,6 @@
 import { StatusCodes } from 'http-status-codes'
 import { hashPassword, comparePassword } from '../utils/passwordUtils.js'
+import { createJWT } from '../utils/tokenUtils.js'
 
 import User from '../models/UserModel.js'
 import { UnauthenticatedError } from '../errors/customErrors.js'
@@ -23,5 +24,11 @@ export const login = async (req, res) => {
 
   if (!isValidUser) throw new UnauthenticatedError('invalid credentials')
 
-  res.send('login')
+  const token = createJWT({
+    userId: user._id,
+    role: user.role,
+  })
+  console.log(token)
+
+  res.json({ token })
 }
