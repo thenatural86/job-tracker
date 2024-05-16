@@ -5,7 +5,7 @@ import Job from '../models/JobModel.js'
 export const getCurrentUser = async (req, res) => {
   const user = await User.findOne({ _id: req.user.userId })
   const userWithoutPassword = user.toJSON()
-  res.status(StatusCodes.OK).json({ userWithoutPassword })
+  res.status(StatusCodes.OK).json({ user: userWithoutPassword })
 }
 
 export const getApplicationStats = async (req, res) => {
@@ -13,5 +13,8 @@ export const getApplicationStats = async (req, res) => {
 }
 
 export const updateUser = async (req, res) => {
-  res.status(StatusCodes.OK).json({ msg: 'update user' })
+  const obj = { ...req.body }
+  delete obj.password
+  const updatedUser = await User.findByIdAndUpdate(req.user.userId, obj)
+  res.status(StatusCodes.OK).json({ msg: 'user updated' })
 }
