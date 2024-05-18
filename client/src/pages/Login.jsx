@@ -30,7 +30,7 @@ const Login = () => {
         <Logo />
         <h1>Login</h1>
         <FormRow type='email' name='email' defaultValue='joe@joe.com' />
-        <FormRow type='password' name='password' defaultValue='joejoe' />
+        <FormRow type='password' name='password' defaultValue='joejoejoe' />
         <button type='submit' className='btn btn-block' disabled={isSubmitting}>
           {isSubmitting ? 'submitting...' : 'submit'}
         </button>
