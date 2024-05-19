@@ -7,6 +7,20 @@ import { Form, useNavigation, redirect } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import customFetch from '../utils/customFetch'
 
+export const action = async ({ request }) => {
+  const formData = await request.formData()
+  const data = Object.fromEntries(formData)
+
+  try {
+    await customFetch.post('/jobs', data)
+    toast.success('Job added successfully')
+    return redirect('all-jobs')
+  } catch (error) {
+    toast.error(error?.response?.data?.msg)
+    return error
+  }
+}
+
 const AddJob = () => {
   const { user } = useOutletContext()
   const navigation = useNavigation()
@@ -18,7 +32,12 @@ const AddJob = () => {
         <div className='form-center'>
           <FormRow type='text' name='position' />
           <FormRow type='text' name='company' />
-          <FormRow type='text' labelText='job location' name='jobLocation' />
+          <FormRow
+            type='text'
+            labelText='job location'
+            name='jobLocation'
+            defaultValue={user.location}
+          />
 
           <FormRowSelect
             labelText='job status'
@@ -27,9 +46,9 @@ const AddJob = () => {
             list={Object.values(JOB_STATUS)}
           />
           <FormRowSelect
-            labelText='jobType'
-            name='job type'
-            defaultValue={JOB_STATUS.FULL_TIME}
+            labelText='job type'
+            name='jobType'
+            defaultValue={JOB_TYPE.FULL_TIME}
             list={Object.values(JOB_TYPE)}
           />
 
