@@ -1,4 +1,4 @@
-import React from 'react'
+// import React from 'react'
 
 import { toast } from 'react-toastify'
 import { JobsContainer, SearchContainer } from '../components'
@@ -21,10 +21,10 @@ const AllJobsContext = createContext()
 const AllJobs = () => {
   const { data } = useLoaderData()
   return (
-    <AllJobsContext value={{ data }}>
+    <AllJobsContext.Provider value={{ data }}>
       <SearchContainer />
       <JobsContainer />
-    </AllJobsContext>
+    </AllJobsContext.Provider>
   )
 }
 
