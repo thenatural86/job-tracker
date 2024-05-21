@@ -30,12 +30,16 @@ export const action = async ({ request, params }) => {
 }
 
 const EditJob = () => {
-  const params = useParams()
-  console.log(params)
   const { job } = useLoaderData()
   const navigation = useNavigation()
   const isSubmitting = navigation.state === 'submitting'
-  return <h1>EditJob</h1>
+  return (
+    <Wrapper>
+      <Form method='post' className='form'>
+        <h4 className='form-title'>edit job</h4>
+      </Form>
+    </Wrapper>
+  )
 }
 
 export default EditJob
