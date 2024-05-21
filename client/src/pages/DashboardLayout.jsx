@@ -33,7 +33,6 @@ const DashboardLayout = ({ isDarkThemeEnabled }) => {
   const toggleSidebar = () => {
     setShowSidebar(!showSidebar)
   }
-
   const logoutUser = async () => {
     navigate('/')
     await customFetch.get('/auth/logout')
