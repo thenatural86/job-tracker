@@ -34,18 +34,18 @@ const Job = ({
           <JobInfo icon={<FaBriefcase />} text={jobType} />
         </div>
         <div className={`status ${jobStatus}`}>{jobStatus}</div>
-      </div>
 
-      <footer className='actions'>
-        <Link to={`../edit-job/${_id}`} className='btn edit-btn'>
-          Edit
-        </Link>
-        <Form>
-          <button type='submit' className='btn delete-btn'>
-            Delete
-          </button>
-        </Form>
-      </footer>
+        <footer className='actions'>
+          <Link to={`../edit-job/${_id}`} className='btn edit-btn'>
+            Edit
+          </Link>
+          <Form method='post' action={`../delete-job/${_id}`}>
+            <button type='submit' className='btn delete-btn'>
+              Delete
+            </button>
+          </Form>
+        </footer>
+      </div>
     </Wrapper>
   )
 }
