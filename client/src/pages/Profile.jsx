@@ -1,5 +1,3 @@
-import React from 'react'
-
 import { FormRow } from '../components'
 import Wrapper from '../assets/wrappers/DashboardFormPage'
 import { useOutletContext } from 'react-router-dom'
@@ -35,7 +33,7 @@ const Profile = () => {
         <h4 className='form-title'>profile</h4>
         <div className='form-center'>
           <div className='form-row'>
-            <label htmlFor='image' className='form-label'>
+            <label htmlFor='avatar' className='form-label'>
               Select an image file (max 0.5 MB):
             </label>
             <input
