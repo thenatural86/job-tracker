@@ -5075,11 +5075,11 @@ export default SubmitBtn
 
 ```json
 {
-  "name": "Zippy",
+  "name": "TestUser",
   "email": "test@test.com",
   "password": "secret123",
-  "lastName": "ShakeAndBake",
-  "location": "Codeville"
+  "lastName": "TestUser",
+  "location": "TestLocation"
 }
 {
   "name": "Chuckleberry",
@@ -6860,4 +6860,5 @@ const apiLimiter = rateLimiter({
 router.post('/register', apiLimiter, validateRegisterInput, register)
 router.post('/login', apiLimiter, validateLoginInput, login)
 ```
+
 # job-tracker
