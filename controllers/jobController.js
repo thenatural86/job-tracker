@@ -5,18 +5,25 @@ import day from 'dayjs'
 
 // Get All Jobs
 export const getAllJobs = async (req, res) => {
-  const { search } = req.query
+  const { search, jobStatus, jobType } = req.query
 
   const queryObject = {
     createdBy: req.user.userId,
   }
-  // createdBy: req.user.userId,
 
   if (search) {
     queryObject.$or = [
       { position: { $regex: search, $options: 'i' } },
       { company: { $regex: search, $options: 'i' } },
     ]
+  }
+
+  if (jobStatus && jobStatus !== 'all') {
+    queryObject.jobStatus = jobStatus
+  }
+
+  if (jobType && jobType !== 'all') {
+    queryObject.jobType = jobType
   }
 
   const jobs = await Job.find(queryObject)
