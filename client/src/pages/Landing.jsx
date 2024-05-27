@@ -1,5 +1,5 @@
 import Wrapper from '../assets/wrappers/LandingPage'
-import main from '../assets/images/main.svg'
+import main from '../assets/images/main-2.svg'
 import { Link } from 'react-router-dom'
 import { Logo } from '../components'
 
@@ -15,8 +15,10 @@ const Landing = () => {
             job <span>tracker</span>
           </h1>
           <p>
-            Welcome to the Job Tracker. A fullstack application built to help
-            you keep track of and find your next job as a software engineer!
+            Welcome to Job Tracker, a full-stack web application built to help
+            software engineers manage and streamline their job search. Track
+            your job applications, discover new opportunities, and land your
+            next dream job!
           </p>
           <Link to='/register' className='btn register-link'>
             Register
