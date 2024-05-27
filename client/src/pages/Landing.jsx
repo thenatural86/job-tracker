@@ -1,4 +1,3 @@
-import styled from 'styled-components'
 import Wrapper from '../assets/wrappers/LandingPage'
 import main from '../assets/images/main.svg'
 import { Link } from 'react-router-dom'
@@ -13,13 +12,11 @@ const Landing = () => {
       <div className='container page'>
         <div className='info'>
           <h1>
-            job <span>tracking</span> app
+            job <span>tracker</span>
           </h1>
           <p>
-            I'm baby wayfarers hoodie next level taiyaki brooklyn cliche blue
-            bottle single-origin coffee chia. Aesthetic post-ironic venmo,
-            quinoa lo-fi tote bag adaptogen everyday carry meggings +1 brunch
-            narwhal.
+            Welcome to the Job Tracker. A fullstack application built to help
+            you keep track of and find your next job as a software engineer!
           </p>
           <Link to='/register' className='btn register-link'>
             Register
