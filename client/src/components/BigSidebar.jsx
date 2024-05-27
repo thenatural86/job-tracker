@@ -1,5 +1,3 @@
-import React from 'react'
-
 import Wrapper from '../assets/wrappers/BigSidebar'
 import { useDashBoardContext } from '../pages/DashboardLayout'
 import Logo from './Logo'
