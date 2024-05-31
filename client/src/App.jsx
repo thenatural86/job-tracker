@@ -1,6 +1,4 @@
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 
 import {
   HomeLayout,
@@ -28,7 +26,6 @@ import { action as deleteJobAction } from './pages/DeleteJob'
 import { loader as adminLoader } from './pages/Admin'
 import { action as profileAction } from './pages/Profile'
 import { loader as statsLoader } from './pages/Stats'
-import { ErrorElement } from './components'
 
 export const checkDefaultTheme = () => {
   const isDarkTheme = localStorage.getItem('darkTheme') === 'true'
@@ -37,14 +34,6 @@ export const checkDefaultTheme = () => {
 }
 
 const isDarkThemeEnabled = checkDefaultTheme()
-
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      staleTime: 1000 * 60 * 5,
-    },
-  },
-})
 
 const router = createBrowserRouter([
   {
@@ -68,13 +57,8 @@ const router = createBrowserRouter([
       },
       {
         path: 'dashboard',
-        element: (
-          <DashboardLayout
-            isDarkThemeEnabled={isDarkThemeEnabled}
-            queryClient={queryClient}
-          />
-        ),
-        loader: dashboardLoader(queryClient),
+        element: <DashboardLayout isDarkThemeEnabled={isDarkThemeEnabled} />,
+        loader: dashboardLoader,
         children: [
           {
             index: true,
@@ -84,8 +68,7 @@ const router = createBrowserRouter([
           {
             path: 'stats',
             element: <Stats />,
-            loader: statsLoader(queryClient),
-            errorElement: <ErrorElement />,
+            loader: statsLoader,
           },
           {
             path: 'all-jobs',
@@ -119,12 +102,7 @@ const router = createBrowserRouter([
 ])
 
 const App = () => {
-  return (
-    <QueryClientProvider client={queryClient}>
-      <RouterProvider router={router} />
-      <ReactQueryDevtools initialIsOpen={false} />
-    </QueryClientProvider>
-  )
+  return <RouterProvider router={router} />
 }
 
 export default App
